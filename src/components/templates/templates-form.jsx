@@ -37,11 +37,31 @@ const TemplateForm = () => {
     const onSubmit = () => {
         
     }
+
+    const handleInputHanyaAngka = (e) => {
+        // Get the input value
+        const inputValue = e.target.value;
+        const filteredValue = inputValue.replace(
+            /[^0-9]/g, ''
+        );
+
+        e.target.value = filteredValue;
+        // Set the filtered value as the input value
+    };
+
+    const handleInputNama = (e) => {
+        const inputValue = e.target.value;
+        const filteredValue = inputValue.replace(
+            /[^a-zA-Z\s']/g, ''
+        );
+
+        e.target.value = filteredValue;
+    }
     return (
-        <Grid container spacing={4} className="mb-2 mx-4">
+        <Grid container spacing={2} className="mb-2">
             <Grid item xs={12} sx={{ display: "flex", justifyContent: "center" }}>
                 <CardDefault
-                    className="ca-card-content"
+                    className="flex xl:w-900 px-4 py-4 my-4"
                     sx={{ width: isSm ? "100%" : isMd ? "80%" : "60%" }}
                     label="Filter"
                     icon={<SearchIcon />}
@@ -53,8 +73,16 @@ const TemplateForm = () => {
                             {
                                 type: FORM_TYPE.TEXT_FIELD,
                                 name: "template_input",
-                                title: "Textfield",
-                                placeholder: "Textfield",
+                                title: "Input Hanya Angka",
+                                placeholder: "Masukan Angka",
+                                onInput: handleInputHanyaAngka,
+                            },
+                            {
+                                type: FORM_TYPE.TEXT_FIELD,
+                                name: "template_input2",
+                                title: "Input Hanya Alphabet",
+                                placeholder: "Masukan Alphabet",
+                                onInput: handleInputNama
                             },
                             {
                             type: FORM_TYPE.CUSTOM,
